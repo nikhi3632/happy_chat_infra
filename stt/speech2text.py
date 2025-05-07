@@ -18,7 +18,7 @@ def load_models():
 
 @endpoint(
     on_start=load_models,
-    name="faster-whisper",
+    name="faster-whisper-base",
     cpu=2,
     memory="32Gi",
     gpu="A10G",

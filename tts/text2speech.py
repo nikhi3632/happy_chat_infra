@@ -25,7 +25,7 @@ def load_models():
 @endpoint(
     timeout=600,
     on_start=load_models,
-    name="xtts-v2",
+    name="coqui-xtts-v2",
     cpu=2,
     memory="32Gi",
     gpu="A10G",
