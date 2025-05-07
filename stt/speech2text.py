@@ -1,4 +1,3 @@
-
 from beam import endpoint, Image, Volume, env
 import base64
 import io

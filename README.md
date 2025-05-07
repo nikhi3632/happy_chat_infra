@@ -9,6 +9,11 @@ python3.12 -m venv venv
 source ./venv/bin/activate
 pip install -r requirements.txt
 beam configure <TOKEN>
-beam serve speech2text.py:stt
-beam serve text2speech.py:tts
+
+cd /happy_chat_infra/stt
+beam deploy speech2text.py:stt
+
+cd /happy_chat_infra/tts
+python upload.py 
+beam deploy text2speech.py:tts
 ```
