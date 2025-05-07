@@ -1,9 +1,10 @@
 
-from beam import endpoint, Image, Volume, env
+from beam import endpoint, Image, Volume, env, task_queue
 import base64
 import io
+import os
 
-BEAM_VOLUME_PATH = "./cached_models"
+BEAM_VOLUME_PATH = "./cached_tts_models"
 
 # These packages will be installed in the remote container
 if env.is_remote():
@@ -11,13 +12,17 @@ if env.is_remote():
 
 # This runs once when the container first starts
 def load_models():
-    model_name = "tts_models/multilingual/multi-dataset/xtts_v2"
-    model = TTS(model_name)
-    model.to("cuda")
-    return model
-
+    try:
+        os.makedirs("./cached_tts_models", exist_ok=True)
+        model = TTS(model_name="tts_models/multilingual/multi-dataset/xtts_v2", progress_bar=True).to("cuda")
+        print("Model loaded successfully!")
+        return model
+    except Exception as e:
+        print(f"Error loading model: {str(e)}")
+        raise
 
 @endpoint(
+    timeout=600,
     on_start=load_models,
     name="xtts-v2",
     cpu=2,
@@ -35,17 +40,16 @@ def load_models():
             "huggingface_hub[hf_xet]",
             "ctranslate2",
             "coqui-tts",
-            "torchaudio",
+            "torchaudio"
         ]
     )
     .with_envs([
-        "HF_HOME=./cached_models",
-        "HF_HUB_ENABLE_HF_TRANSFER=1",
+        "TTS_HOME=./cached_tts_models",
         "COQUI_TOS_AGREED=1"
         ]),
     volumes=[
         Volume(
-            name="cached_models",
+            name="cached_tts_models",
             mount_path=BEAM_VOLUME_PATH,
         )
     ],

@@ -3,7 +3,7 @@ from beam import endpoint, Image, Volume, env
 import base64
 import io
 
-BEAM_VOLUME_PATH = "./cached_models"
+BEAM_VOLUME_PATH = "./cached_stt_models"
 
 # These packages will be installed in the remote container
 if env.is_remote():
@@ -39,7 +39,7 @@ def load_models():
     .with_envs("HF_HUB_ENABLE_HF_TRANSFER=1"),
     volumes=[
         Volume(
-            name="cached_models",
+            name="cached_stt_models",
             mount_path=BEAM_VOLUME_PATH,
         )
     ],
