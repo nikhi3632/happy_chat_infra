@@ -9,6 +9,6 @@ python3.12 -m venv venv
 source ./venv/bin/activate
 pip install -r requirements.txt
 beam configure <TOKEN>
-beam serve transcribe_app.py:transcription
-beam serve output_app.py:output
+beam serve speech2text.py:stt
+beam serve text2speech.py:tts
 ```

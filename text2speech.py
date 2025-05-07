@@ -50,7 +50,7 @@ def load_models():
         )
     ],
 )
-def output(context, **inputs):
+def tts(context, **inputs):
     # Retrieve cached model from on_start
     model : TTS = context.on_start_value
 

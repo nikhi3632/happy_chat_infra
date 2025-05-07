@@ -44,7 +44,7 @@ def load_models():
         )
     ],
 )
-def transcription(context, **inputs):
+def stt(context, **inputs):
     # Retrieve cached model from on_start
     model : WhisperModel = context.on_start_value
 
