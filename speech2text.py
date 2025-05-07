@@ -65,7 +65,9 @@ def stt(context, **inputs):
         # Transcribe
         segments, _ = model.transcribe(audio_stream, language=language)
         text = " ".join(segment.text for segment in segments)
-        return {"text": text}
+        response = {"text": text}
+        print(response)
+        return response
 
     except Exception as e:
         return {"error": f"Something went wrong: {e}"}

@@ -74,10 +74,12 @@ def tts(context, **inputs):
         # Encode to base64
         audio_base64 = base64.b64encode(audio_buffer.read()).decode("utf-8")
 
-        return {
+        response = {
             "text": text,
             "audio_base64": audio_base64
         }
+        print(response)
+        return response
 
     except Exception as e:
         return {"error": f"Something went wrong: {e}"}
