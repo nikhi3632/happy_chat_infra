@@ -5,8 +5,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BEAM_TOKEN = os.environ['BEAM_TOKEN']
+STT_DEPLOYMENT_ID = os.environ['STT_DEPLOYMENT_ID']
 
-url = "https://faster-whisper-base-db92dd5-v1.app.beam.cloud"
+url = f"https://faster-whisper-base-{STT_DEPLOYMENT_ID}.app.beam.cloud"
 headers = {
     'Authorization': f"Bearer {BEAM_TOKEN}"
 }
