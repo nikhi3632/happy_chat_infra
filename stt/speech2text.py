@@ -65,7 +65,6 @@ def stt(context, **inputs):
         segments, _ = model.transcribe(audio_stream, language=language)
         text = " ".join(segment.text for segment in segments)
         response = {"text": text}
-        print(response)
         return response
 
     except Exception as e:

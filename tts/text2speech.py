@@ -83,7 +83,6 @@ def tts(context, **inputs):
             "text": text,
             "audio_base64": audio_base64
         }
-        print(response)
         return response
 
     except Exception as e:
