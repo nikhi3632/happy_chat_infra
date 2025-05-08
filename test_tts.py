@@ -4,9 +4,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BEAM_TOKEN = os.environ['BEAM_TOKEN']
-TTS_DEPLOYMENT_ID = os.environ['TTS_DEPLOYMENT_ID']
 
-url = f"https://coqui-xtts-v2-{TTS_DEPLOYMENT_ID}.app.beam.cloud"
+url = "https://coqui-xtts-v2-0ce9c9b.app.beam.cloud"
 headers = {
     'Authorization': f"Bearer {BEAM_TOKEN}"
 }
