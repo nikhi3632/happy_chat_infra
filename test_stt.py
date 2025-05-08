@@ -29,3 +29,4 @@ response_whisper = requests.post(
 
 print("Faster Whisper response:")
 print(response_whisper.json())
+print(response_whisper.json().keys()) # dict_keys(['text']

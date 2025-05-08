@@ -31,4 +31,4 @@ response_xtts = requests.post(
 
 print("\nXTTS response:")
 print(response_xtts.json())
-
+print(response_xtts.json().keys()) # dict_keys(['text', 'audio_base64'])
