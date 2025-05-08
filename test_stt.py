@@ -6,12 +6,20 @@ load_dotenv()
 
 BEAM_TOKEN = os.environ['BEAM_TOKEN']
 
+url = "https://faster-whisper-base-db92dd5-v1.app.beam.cloud"
+headers = {
+    'Authorization': f"Bearer {BEAM_TOKEN}"
+}
+
+response = requests.post(url + "/warmup", headers=headers)
+print(response.status_code, response.headers)
+
 # --- Faster Whisper Request ---
 with open("payload.json", "r") as f:
     payload_data = json.load(f)
 
 response_whisper = requests.post(
-    "https://faster-whisper-base-db92dd5-v1.app.beam.cloud",
+    url,
     headers={
         "Authorization": f"Bearer {BEAM_TOKEN}",
         "Content-Type": "application/json"

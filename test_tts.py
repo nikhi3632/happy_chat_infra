@@ -5,6 +5,14 @@ load_dotenv()
 
 BEAM_TOKEN = os.environ['BEAM_TOKEN']
 
+url = "https://coqui-xtts-v2-0ce9c9b-v1.app.beam.cloud"
+headers = {
+    'Authorization': f"Bearer {BEAM_TOKEN}"
+}
+
+response = requests.post(url + "/warmup", headers=headers)
+print(response.status_code, response.headers)
+
 # --- Coqui XTTS Request ---
 xtts_payload = {
     "text": "Hello, this is XTTS speaking.",
@@ -13,7 +21,7 @@ xtts_payload = {
 }
 
 response_xtts = requests.post(
-    "https://coqui-xtts-v2-0ce9c9b-v1.app.beam.cloud",
+    url,
     headers={
         "Authorization": f"Bearer {BEAM_TOKEN}",
         "Content-Type": "application/json"
